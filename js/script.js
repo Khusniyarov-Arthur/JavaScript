@@ -1,23 +1,12 @@
-let title = "lesson 01"
-let screens = "full screen"
-let screenPrice = "Over price"
-let rollback = "Не знаю что писать"
-let fullPrice = "free"
-let adaptive = "yes"
-
-alert(rollback);
-
-console.log(screens);
-
 // урок 2
 // Следующим переменным присвоить значения 
 
-title = "Вкушаю JS";
-screens = "Простые, Сложныйе, Инетерактивные";
-rollback = 69;
-screenPrice = 100;
-fullPrice = 1000;
-adaptive = true;
+let title = "Вкушаю JS";
+let screens = "Простые, Сложныйе, Инетерактивные";
+let rollback = 69;
+let screenPrice = 100;
+let fullPrice = 1000;
+let adaptive = true;
 
 // Вывести в консоль тип 
 // данных значений переменных title, fullPrice, adaptive; 
