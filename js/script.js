@@ -28,7 +28,7 @@
 // console.log(fullPrice * (rollback/100));
 
 let rollback = 69;
-let fullPrice 
+let fullPrice;
 let screenPrice;
 let title = prompt("Как называется ваш проект?", "jopa");
 let screens = prompt("Какие типы экранов нужно разработать?", "Все");
@@ -40,12 +40,12 @@ let servicePrice2;
 
 
 // Блок описания фкнуций
-let getRollbackMessage = function(a) {
-  if (a > 30000) {
+let getRollbackMessage = function(progressiveDiscount) {
+  if (progressiveDiscount > 30000) {
     return "Даем скидку в 10%"
-  } else if (a >= 15000 && a <= 30000) {
+  } else if (progressiveDiscount >= 15000 && progressiveDiscount <= 30000) {
     return "Даем скидку в 5%"
-  } else if (a >=0 && a < 15000) {
+  } else if (progressiveDiscount >=0 && progressiveDiscount < 15000) {
     return "Скидка не предусмотрена"
   } else {
     return "Что то пошло не так"
