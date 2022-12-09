@@ -5,32 +5,70 @@ let appData = {
   fullPrice: 0,
   screenPrice: 0,
   title: "",
-  screens: "",
+  screens: [],
   adaptive: true,
-  service1: "",
-  servicePrice1: 0,
-  service2: "",
-  servicePrice2: 0,
   allServicePrices: 0,
   servicePercentPrice2: 0,
+  services: {},
 
   start: function() {
     appData.asking();
-    appData.allServicePrices = appData.getAllServicePrices();
-    appData.fullPrice = appData.getFullPrice();
-    appData.servicePercentPrice2 = appData.getServicePercentPrices();
+    appData.addPrice()
+    appData.getFullPrice();
+    appData.getServicePercentPrices();
+    appData.getTitle()
     appData.logger();
   },
 
   asking: function() {
-    appData.title = prompt("Как называется ваш проект?", "jopa");
-    appData.screens = prompt("Какие типы экранов нужно разработать?", "Все");
+
     do { 
-      appData.screenPrice = +prompt("Сколько будет стоить данная работа?", 10000);
-    } while (!appData.isNumber(appData.screenPrice))
+      appData.title = prompt("Как называется ваш проект?", "jopa");
+    } while (appData.isNumber(appData.title))
+
     appData.adaptive = confirm("Нужен ли адаптив на сайте?");
+    
+    for (i = 0; i < 2; i++) {
+      let screensPrice;
+      let screensQuestoin
+
+      do { 
+        screensQuestoin = prompt("Какие типы экранов нужно разработать?", "Все");
+      } while (appData.isNumber(screensQuestoin))
+      
+      do { 
+        screensPrice = +prompt("Сколько будет стоить данная работа?", 10000);
+      } while (!appData.isNumber(screensPrice))
+
+      appData.screens.push({id: i, screens: screensQuestoin, price: screensPrice })
+    };
+
+    for (i = 0; i < 2; i++) {
+      let answerPrice;
+      let questoin;
+      
+      do { 
+        questoin = prompt("Какой дополнительный тип услуги нужен?", "Верстка");
+      } while (appData.isNumber(questoin))
+
+      do { 
+        answerPrice = prompt("Сколько это будет стоить?", 2000);
+      } while (!appData.isNumber(answerPrice))
+
+      appData.services[questoin + " " + i] = +answerPrice
+    }
   },
 
+  addPrice: function () {
+    appData.screenPrice = appData.screens.reduce(function(sum, item) {
+      return sum + item.price
+    }, 0)
+
+    appData.allServicePrices = appData.allServicePrices;
+    for (let key in appData.services) {
+      appData.allServicePrices += appData.services[key]
+    }
+  },
 
   getRollbackMessage: function(progressiveDiscount) {
     if (progressiveDiscount > 30000) {
@@ -48,39 +86,28 @@ let appData = {
     return !isNaN(parseFloat(num)) && isFinite(num)
   }, 
   
-  getAllServicePrices: function() {
-    appData.service1 = prompt("Какой дополнительный тип услуги нужен?", "Верстка");
-    do { 
-      appData.servicePrice1 = prompt("Сколько это будет стоить?", 1000);
-    } while (!appData.isNumber(appData.servicePrice1)) 
-    appData.servicePrice1= +appData.servicePrice1;
-  
-    appData.service2 = prompt("Какой дополнительный тип услуги нужен?", "Адаптив");
-    do { 
-      appData.servicePrice2 = prompt("Сколько это будет стоить?", 2000);
-    } while (!appData.isNumber(appData.servicePrice2)) 
-    appData.servicePrice2= +appData.servicePrice2;
-    return appData.servicePrice1 + appData.servicePrice2
-  },
-
   getFullPrice: function() {
-    return appData.screenPrice + appData.allServicePrices
+    appData.fullPrice = appData.screenPrice + appData.allServicePrices
   },
 
   getTitle: function() {
     let trimTitle = appData.title.trim();
-    return  trimTitle[0].toUpperCase() + trimTitle.toLowerCase().slice(1);
+    appData.title = trimTitle[0].toUpperCase() + trimTitle.toLowerCase().slice(1);
   },
 
   getServicePercentPrices: function() {
-    return  appData.fullPrice - (appData.fullPrice * appData.rollback / 100);
+    appData.servicePercentPrice2 = appData.fullPrice - (appData.fullPrice * appData.rollback / 100);
   },
 
   logger: function() {
     for ( let key in appData) {
       console.log(key);
     }
-  }
+    console.log(appData.getRollbackMessage(appData.fullPrice));
+    console.log(appData.servicePercentPrice2);
+    console.log(appData.services);
+    console.log(appData.screens);
+  },
 }
 
   appData.start()
