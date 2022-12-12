@@ -111,3 +111,39 @@ let appData = {
 }
 
   appData.start()
+
+  // Урок №9
+let totalInput
+let cNumber = []
+let cPercent = [];
+
+let titleTagName = document.getElementsByTagName('h1')[0].textContent;
+let buttonСalculate = document.getElementsByClassName('handler_btn')[0];
+let buttonReset = document.getElementsByClassName('handler_btn')[1];
+let typeRange = document.querySelector('.rollback > div > [type = range]')
+let typeValue = document.querySelector('.rollback > div > .range-value')
+let addButton = document.querySelectorAll('.other-items');
+let allScreen = document.querySelectorAll('.screen')
+
+addButton.forEach(function(item) {
+  if (item.classList.contains('percent')) {
+    cPercent.push(item)
+  } else {
+    cNumber.push(item)
+  }
+})
+
+totalInput = document.getElementsByClassName('total-input')
+  for (i = 0; i < totalInput.length; i++) {
+    console.log(document.getElementsByClassName('total-input')[i])
+  }
+
+console.log(titleTagName);
+console.log(buttonСalculate);
+console.log(buttonReset);
+console.log(addButton);
+console.log(cPercent);
+console.log(cNumber);
+console.log(typeRange);
+console.log(typeValue);
+console.log(allScreen);
