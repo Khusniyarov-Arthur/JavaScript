@@ -113,17 +113,16 @@ let appData = {
   appData.start()
 
   // Урок №9
-let totalInput
-let cNumber = []
-let cPercent = [];
+const cNumber = []
+const cPercent = [];
 
-let titleTagName = document.getElementsByTagName('h1')[0].textContent;
-let buttonСalculate = document.getElementsByClassName('handler_btn')[0];
-let buttonReset = document.getElementsByClassName('handler_btn')[1];
-let typeRange = document.querySelector('.rollback > div > [type = range]')
-let typeValue = document.querySelector('.rollback > div > .range-value')
-let addButton = document.querySelectorAll('.other-items');
-let allScreen = document.querySelectorAll('.screen')
+const titleTagName = document.getElementsByTagName('h1')[0].textContent;
+const buttonСalculate = document.getElementsByClassName('handler_btn')[0];
+const buttonReset = document.getElementsByClassName('handler_btn')[1];
+const typeRange = document.querySelector('.rollback > div > [type = range]')
+const typeValue = document.querySelector('.rollback > div > .range-value')
+const addButton = document.querySelectorAll('.other-items');
+const allScreen = document.querySelectorAll('.screen')
 
 addButton.forEach(function(item) {
   if (item.classList.contains('percent')) {
@@ -133,7 +132,7 @@ addButton.forEach(function(item) {
   }
 })
 
-totalInput = document.getElementsByClassName('total-input')
+const totalInput = document.getElementsByClassName('total-input')
   for (i = 0; i < totalInput.length; i++) {
     console.log(document.getElementsByClassName('total-input')[i])
   }
